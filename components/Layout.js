@@ -1,8 +1,31 @@
 import Link from "next/link"
+import Head from "next/head"
+import Router from "next/router"
+import NProgress from "nprogress"
+
+
+//when route has changed
+Router.onRouteChangeStart = url => {
+    console.log(url);
+    NProgress.start();
+}
+
+
+
+//when route has finished
+Router.onRouteChangeComplete = () => {
+    console.log("done")
+    NProgress.done();
+}
+//errors
+Router.onRouteChangeError = () => NProgress.done();
 
 export const Layout = ({ children, title }) => {
     return (
         <>
+            <Head>
+                <title>My Portfolio</title>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.css" integrity="sha512-DanfxWBasQtq+RtkNAEDTdX4Q6BPCJQ/kexi/RftcP0BcA4NIJPSi7i31Vl+Yl5OCfgZkdJmCqz+byTOIIRboQ==" crossorigin="anonymous" />            </Head>
             <header>
                 <nav>
                     <ul>
