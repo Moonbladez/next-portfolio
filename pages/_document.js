@@ -10,7 +10,6 @@ class MyDocument extends Document {
                     <meta name="description" content="A random site" />
                     <meta charSet="utf-8" />
                     <meta name="robots" content="noindex, nofollow" />
-                    <meta name="viewport" content="width=device-width" />
                 </Head>
                 <body>
                     <Main />
