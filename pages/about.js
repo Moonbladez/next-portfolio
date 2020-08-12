@@ -1,13 +1,36 @@
-import Link from "next/link"
 
+import { Component } from "react"
+import fetch from "isomorphic-unfetch"
 import { Layout } from "../components/Layout"
 
-const About = () => (
 
-    <Layout title={"About"}>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, impedit eaque nesciunt minus dignissimos delectus praesentium laborum laudantium aut dicta, commodi sequi quae ullam magnam itaque dolor, saepe unde illum ratione quos? Nulla optio debitis, tenetur doloremque dignissimos odit! Eveniet nisi vero, dolore minima voluptatum odio impedit doloremque nemo ad!</p>
-    </Layout>
-)
+
+class About extends Component {
+
+    static async getInitialProps() {
+        const response = await fetch("http://api.github.com/users/moonbladez")
+        const data = await response.json()
+
+
+        return {
+            user: data
+        }
+    }
+    render() {
+        const { user } = this.props
+        return (
+            <Layout title={"About"}>
+                <h2>{user.name}
+                    <img src={user.avatar_url} alt={user.name} />
+                </h2>
+            </Layout>
+        )
+    }
+
+}
+
+
+
 
 
 
